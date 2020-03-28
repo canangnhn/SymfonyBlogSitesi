@@ -1,0 +1,59 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Category Home Page{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">Category List</h1>
+
+    <!-- /.container-fluid -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ParentId</th>
+                <th>Category Name</th>
+                <th>Keywords</th>
+                <th>Description</th>
+
+                <th>Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.parentId }} </td>
+                <td>{{ category.title }}</td>
+                <td>{{ category.keywords }}</td>
+                <td>{{ category.description }}</td>
+                <td>{{ category.image }}</td>
+                <td>{{ category.status }}</td>
+                <td>
+                <td>
+                    <a href="{{ path('category_show', {'id': category.id}) }}" class="btn btn-block btn-primary">Show</a>
+
+                </td>
+                <td>
+                    <a href="{{ path('category_edit', {'id': category.id}) }}"  class="btn btn-block btn-primary">Edit</a>
+                </td>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <div class="col-md-2">
+            <a href="{{ path('category_new') }}" class="btn btn-block btn-primary">Create new</a>
+            <br>
+        </div>
+    </div>
+
+{% endblock %}

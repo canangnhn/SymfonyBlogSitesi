@@ -1,0 +1,157 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block description %}{{ blog.description }}{% endblock %}
+{% block body %}
+
+
+    <section class="site-section pt-5 pb-5">
+        <div class="container" >
+            <div class="row">
+                <div class="col-lg-4 sidebar">
+                    <br><br>
+                    <div class="owl-carousel owl-theme home-slider owl-loaded owl-drag">
+                        <a href="{{path('home_blog_show',{'id': blog.id}) }}" class="a-block d-flex align-items-center height-lg"  style="background-image: url('{{ asset('uploads/images/' ~ blog.image)}} '); ">
+                            <div class="text half-to-full">
+
+                                <h3></h3>
+
+                            </div>
+                        </a>
+                        {% for rs in images %}
+                            <div>
+                                <a href="{{path('home_blog_show',{'id': rs.id}) }}" class="a-block d-flex align-items-center height-lg" style="background-image: url('{{ asset('uploads/images/' ~ rs.image)}} '); ">
+
+                                    <div class="text half-to-full">
+
+                                        <h3></h3>
+
+                                    </div>
+                                </a>
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-8 sidebar">
+                    <br>
+
+                    <br> <h3 style="font-family:verdana">Blog Detail</h3>
+                    <table class="table">
+                        <tbody>
+
+
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ blog.title }}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Blog</th>
+                            <td>{{ blog.details | raw }}</td>
+                        </tr>
+                        <tr>
+                            <th>Image</th>
+                            <td><img src="{{ asset('uploads') }}/images/{{ blog.image }}" height="100"></td>
+                        </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="site-section py-lg">
+        <div class="container">
+
+            <div class="row blog-entries element-animate">
+
+                <div class="col-md-12 col-lg-8 main-content">
+                    <div class="pt-5">
+                        <h3 class="mb-5">Comments</h3>
+                        {%  for rs in comments %}
+                            <ul class="comment-list">
+
+                                <li class="comment">
+
+                                    <div class="comment-body">
+
+                                        <h3>{{rs.subject}} [Rate : {{rs.rate}}]</h3>
+                                        <p>{{ rs.comment }}</p>
+
+                                    </div>
+
+                                </li>
+
+
+                            </ul>
+                        {% endfor %}
+
+                        <!-- END comment-list -->
+                        {% if app.user %}
+                            <div class="comment-form-wrap pt-5">
+                                <h3 class="mb-8">Leave a comment</h3>
+                                {{ include('messages.html.twig') }}
+                                <form name="comment" method="post" action="{{path('user_new_comment',{'id': blog.id})}}" class="p-5 bg-light" >
+
+                                    <div class="form-group">
+                                        <label for="website" id="comment_subject">Subject</label>
+                                        <input type="name" class="form-control" id="comment_subject" name="comment[subject]" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Rate</label>
+                                        <select id="comment_rate" name="comment[rate]" class="input-block-level">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">Message</label>
+                                        <textarea name="comment[comment]" id="comment_comment" cols="30" rows="10" class="form-control" placeholder="Comment" ></textarea>
+
+                                    </div>
+                                    <div class="col-md-3 form-group">
+                                        <input type="hidden" name="token" value="{{csrf_token('comment')}}" >
+                                        <button type="submit" class="btn btn-primary">Post Comment</button>
+                                    </div>
+
+                                </form>
+                            </div>
+
+                        {% else %}
+                            <li>
+                                <a href="/loginuser"><i class="icon-envelope-alt"></i>İf you want to add comment please Login</a>
+                            </li>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+
+
+                <!-- END main-content -->
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

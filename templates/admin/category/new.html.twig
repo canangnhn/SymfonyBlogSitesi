@@ -1,0 +1,16 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}New Category{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <h1>Create new Category</h1>
+
+    {{ include('admin/category/_form.html.twig') }}
+    <br>
+    <div class="col-md-2">
+        <a href="{{ path('category_index') }}" class=" btn btn-block btn-primary">Back to list</a>
+    </div>
+</div>
+{% endblock %}

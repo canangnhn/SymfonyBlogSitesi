@@ -1,0 +1,67 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}User Blog Detail{% endblock %}
+
+{% block body %}
+
+
+
+<div class="container">
+    <div class="row">
+
+        {{ include('user/usermenu.html.twig') }}
+        <div class="col-sm-6 col-md-7 col-md-pull-4">
+            <br>
+
+            <br> <h1>User Blog Detail</h1>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ blog.id }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ blog.title }}</td>
+                </tr>
+                <tr>
+                    <th>Keyword</th>
+                    <td>{{ blog.keyword }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ blog.description }}</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td><img src="{{ asset('uploads') }}/images/{{ blog.image }}" height="100"></td>
+                </tr>
+                <tr>
+                    <th>Blog</th>
+                    <td>{{ blog.details | raw }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{ blog.status }}</td>
+                </tr>
+
+
+                <tr>
+                    <th>Created_at</th>
+                    <td>{{ blog.createdAt ? blog.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Update_at</th>
+                    <td>{{ blog.updateAt ? blog.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

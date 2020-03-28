@@ -1,0 +1,22 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Edit Blog{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <h1>Edit Blog</h1>
+
+    {{ include('admin/blog/_form.html.twig', {'button_label': 'Update'}) }}
+    <br>
+    <div class="col-md-2">
+    <a href="{{ path('blog_index') }}" class="btn btn-block btn-primary">Back to list</a>
+    </div>
+    <br>
+
+    {{ include('admin/blog/_delete_form.html.twig', {'button_label': 'Delete'}) }}
+
+
+</div>
+{% endblock %}
+
+

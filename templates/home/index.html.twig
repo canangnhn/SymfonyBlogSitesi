@@ -1,0 +1,110 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ setting[0].title }}{% endblock %}
+{% block keywords %}{{ setting[0].keywords }}{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+
+{% block slider %}{% include('home/slider.html.twig') %}{% endblock %}
+{% block body %}
+    <section class="site-section py-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="mb-4">Latest Posts</h2>
+                </div>
+            </div>
+            <div class="row blog-entries">
+                <div class="col-md-12 col-lg-8 main-content">
+
+                    <div class="row">
+                        {% for rs in blogs %}
+                        <div class="col-md-6">
+                            <a href="{{path('home_blog_show',{'id': rs.id}) }}" class="blog-entry element-animate" data-animate-effect="fadeIn">
+                                <img src="{{ asset('uploads/images/' ~ rs.image)}}" height="200px" width="400px" alt="Image placeholder">
+                                <div class="blog-content-body">
+                                    <div class="post-meta">
+
+
+                                        <span class="ml-2"><span class="fa fa-comments"></span>3 </span>
+                                    </div>
+                                    <h2>{{rs.title}}</h2>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+                </div>
+
+                <!-- END main-content -->
+
+                <div class="col-md-12 col-lg-4 sidebar">
+
+                    <!-- END sidebar-box -->
+
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        <h3 class="heading">New Post</h3>
+                        <div class="post-entry-sidebar">
+
+                            <ul>
+
+                                {% for rs in newblogs %}
+                                <li>
+                                    <a href="{{path('home_blog_show',{'id': rs.id}) }}">
+                                        <img src="{{ asset('uploads/images/' ~ rs.image)}}" alt="Image placeholder" class="mr-4">
+                                        <div class="text">
+                                            <h4>{{rs.title}}</h4>
+                                            <div class="post-meta">
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- END sidebar-box -->
+
+
+                    <div class="sidebar-box">
+                        <h3 class="heading">Categories</h3>
+                        <ul class="categories">
+                            <li><a href="#">Food <span>(12)</span></a></li>
+                            <li><a href="#">Travel <span>(22)</span></a></li>
+                            <li><a href="#">Lifestyle <span>(37)</span></a></li>
+                            <li><a href="#">Business <span>(42)</span></a></li>
+                            <li><a href="#">Adventure <span>(14)</span></a></li>
+                        </ul>
+                    </div>
+                    <!-- END sidebar-box -->
+
+                </div>
+                <!-- END sidebar -->
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+{% endblock %}

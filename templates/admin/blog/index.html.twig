@@ -1,0 +1,79 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Blog index{% endblock %}
+
+{% block body %}
+
+    <SCRIPT language="JavaScript" type="text/javascript">
+        function openWin(windowURL, windowName, windowFeatures ) {  window.open(windowURL, windowName, windowFeatures);
+
+        }
+    </SCRIPT>
+<div class="container-fluid">
+    <div class="col-md-2">
+    <a href="{{ path('blog_new') }}" class="btn btn-block btn-primary">Create new</a>
+        <br>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>User</th>
+                <th>Image</th>
+
+
+                <th>Gallery</th>
+                <th>Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for blog in blogs %}
+            <tr>
+                <td>{{ blog.id }}</td>
+                <td>{{ blog.catname }}</td>
+                <td>{{ blog.title }}</td>
+                <td><a href="{{ path('admin_user_show', {'id':blog.user_id}) }}">
+                    {{ blog.name }} {{ blog.surname }}</a></td>
+
+                <td>{{ blog.description }}</td>
+                <td>
+                    <a href="javascript:openWin('{{ path('blog_edit',{'id':blog.id}) }}">
+                    {% if blog.image ==null %}
+                        Add Image
+                    {% else %}
+                        <img src="{{ asset('uploads') }}/images/{{ blog.image }}" height="100">
+                    {% endif %}
+                    </a>
+                </td>
+
+
+                <td>
+                    <a href="javascript:openWin('{{ path('admin_image_new',{'id':blog.id}) }}','','toolbar=no,location=no,directories=0,status=noto=50,left=100,menuBar=no,scrollBars=yes,resizable=no,width=900,height=700');">
+                    <img src="{{ asset('assets/admin/img') }}/galery.png" height="40">
+                    </a>
+                </td>
+                <td>{{ blog.status }}</td>
+                <td>
+                    <a href="{{ path('blog_show', {'id': blog.id}) }}" class="btn btn-block btn-primary">Show</a>
+
+                </td>
+                <td>
+                    <a href="{{ path('blog_edit', {'id': blog.id}) }}"  class="btn btn-block btn-primary">Edit</a>
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</div>
+{% endblock %}

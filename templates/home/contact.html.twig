@@ -1,0 +1,76 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}Contact {{ setting[0].title }}{% endblock %}
+{% block keyword %}{{ setting[0].keyword }}{% endblock %}
+{% block description %}{{ setting[0].description }}{% endblock %}
+{% block body %}
+
+    <section class="site-section">
+        <div class="container">
+
+            <div class="row blog-entries">
+                <div class="col-lg-3 sidebar">
+                    <h4>Contact Form</h4>
+
+                    {{ include('messages.html.twig') }}
+
+                    <form name="messages" method="post" role="form" class="contact-form">
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+
+                                <input type="text" placeholder="Name"  class="input-block-level" id="messages_name" name="messages[name]" maxlength="20" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+
+                                <input type="email" placeholder="email" class="input-block-level" id="messages_email" name="messages[email]" maxlength="100" class="form-control">
+                            </div>
+                            <div class="col-md-12 form-group">
+
+                                <input type="text" placeholder="Subject" class="input-block-level" id="messages_subject" name="messages[subject]" maxlength="20" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 form-group">
+                                <textarea class="input-block-level" placeholder="Write Message" name="messages[message]" id="messages_message" class="form-control " cols="20" rows="4"></textarea>
+                                <br>
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 form-group">
+                                <input type="hidden" id="messages__token" name="token" value="{{csrf_token('form-message')}}" /></div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </div>
+
+                    </form>
+
+
+                </div>
+
+                <div class="col-lg-9 col-md-5 col-sm-5 sidebar">
+                    <div class="sidebar-box">
+                        <div class="bio text-center">
+                            <div class="bio-body">
+                                <h2>Contact Information</h2>
+                                {{ setting[0].contact | raw }}
+
+                                <p class="social">
+                                    <a href="{{setting[0].facebook}}" title="Twitter"><span class="fa fa-facebook"></span></a>
+                                    <a href="{{setting[0].twitter}}" title="p-2"><span class="fa fa-twitter"></span></a>
+                                    <a href="{{setting[0].instagram}}" title="p-2"><span class="fa fa-instagram"></span></a>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+    </section>
+
+
+{% endblock %}

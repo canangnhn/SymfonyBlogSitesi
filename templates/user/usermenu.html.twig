@@ -1,0 +1,29 @@
+
+<div class="col-lg-3 col-md-5 col-sm-5 sidebar">
+ <br><br><br>
+    <!-- END sidebar-box -->
+    <div class="sidebar-box">
+        <div class="bio text-center">
+            <img src="{{ asset('uploads') }}/images/{{ app.user.image }}" alt="Image Placeholder" class="img-fluid">
+
+            <div class="bio-body">
+                <div class="sidebar-box">
+                    <h3 class="heading">{{ app.user.name }} {{ app.user.surname }}</h3>
+                    <ul class="categories">
+                        <li><a href="/user">My Profile</a></li>
+                        <li><a href="/user/blog">My Blogs</a></li>
+                        <li><a href="/user/comments">My Comments</a></li>
+                        <li><a href="#">******</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+                <p><a href="{{ path('user_blog_new') }}"  class="btn btn-primary btn-sm rounded">Create new Blog</a></p>
+                <p class="social">
+
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,28 @@
+<section class="site-section pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme home-slider">
+                    {% for rs in slider %}
+                    <div>
+                        <a href="{{path('home_blog_show',{'id': rs.id}) }}" class="a-block d-flex align-items-center height-lg" style="background-image: url('{{ asset('uploads/images/' ~ rs.image)}} '); ">
+                            <div class="text half-to-full">
+                                <span class="category mb-25">{{rs.title}}</span>
+                                <h3></h3>
+                                <p>{{ rs.description }}</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</section>

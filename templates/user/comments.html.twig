@@ -1,0 +1,64 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}My Comments{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="container">
+        <div class="row">
+
+            {{ include('user/usermenu.html.twig') }}
+            <div class="col-sm-6 col-md-7 col-md-pull-4">
+                <br><br><br>
+                <table class="table">
+                    <thead>
+                    <tr>
+
+                        <th>Subject</th>
+                        <th>Comment</th>
+                        <th>Status</th>
+                        <th>Blog</th>
+                        {#<th>Created_at</th>#}
+                        <th>Rate</th>
+                        <th>actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for comment in comments %}
+                        <tr>
+                            <td>{{ comment.subject }}</td>
+                            <td>{{ comment.comment }}</td>
+                            <td>{{ comment.status }}</td>
+                            <td><a href="{{ path('user_blog_show', {'id': comment.blog_id}) }}" >{{ comment.title }} </a></td>
+                            {#<td>{{ comment.created_at ? comment.created_at|date('Y-m-d H:i:s') : '' }}</td>#}
+
+                            <td>{{ comment.rate }}</td>
+
+                            <td>
+                            <td><a href="/user/comments/{{ comment.id }}" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</a></td>
+
+                            </td>
+
+
+
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="10">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

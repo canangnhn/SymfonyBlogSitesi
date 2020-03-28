@@ -1,0 +1,59 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Setting index{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="col-md-2">
+        <a href="{{ path('setting_new') }}" class="btn btn-block btn-primary">Create new</a>
+    </div>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Username</th>
+                <th>City</th>
+                <th>Email</th>
+
+                <th>Status</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for setting in settings %}
+            <tr>
+                <td>{{ setting.id }}</td>
+                <td>{{ setting.title }}</td>
+                <td>{{ setting.username }}</td>
+                <td>{{ setting.city }}</td>
+                <td>{{ setting.email }}</td>
+
+                <td>{{ setting.status }}</td>
+
+
+                <td>
+
+                        <a href="{{ path('setting_show', {'id': setting.id}) }}" class="btn btn-block btn-primary">Show</a>
+                </td>
+                <td>
+
+                        <a href="{{ path('setting_edit', {'id': setting.id}) }}" class="btn btn-block btn-primary">Edit</a>
+
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+{% endblock %}

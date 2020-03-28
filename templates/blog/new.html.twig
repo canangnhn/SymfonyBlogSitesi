@@ -1,0 +1,30 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}My Blogs{% endblock %}
+
+{% block body %}
+
+
+
+    <div class="container">
+        <div class="row">
+
+            {{ include('user/usermenu.html.twig') }}
+            <div class="col-sm-6 col-md-7 col-md-pull-4">
+                <br>
+
+                <h1>Create new Blog</h1>
+
+                {{ include('blog/_form.html.twig') }}
+                <br>
+                <a href="{{ path('user_blog_index') }}" class="btn btn-primary btn-sm rounded">Back to list</a><br><br>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
